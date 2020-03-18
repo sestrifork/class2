@@ -12,7 +12,7 @@ function showSorenLectureSolution(lecture) {
                     mitArray[i] = [
                         Math.floor(Math.random()*(canvas.width-5)),
                         Math.floor(Math.random()*(canvas.height-5)),
-                        5,
+                        10,
                         5
                     ];
                 }
