@@ -5,8 +5,20 @@ function showKatrineLectureSolution(lecture) {
             var ctx = canvas.getContext("2d");
             ctx.beginPath();
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.rect(100,100,10,10);
-            ctx.rect(150,150,10,10);
+
+            {
+                var KArray = new Array();
+                for (i=0; i<200; i++) {
+                    mitArray[i] = [
+                        Math.floor(Math.random()*(canvas.width-5)),
+                        Math.floor(Math.random()*(canvas.height-5)),
+                        5,
+                        5
+                    ];
+                }
+
+            ctx.rect(20,20,10,10);
+            ctx.rect(15,15,10,10);
             ctx.stroke();
             break;
         
