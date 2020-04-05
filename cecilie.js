@@ -29,7 +29,7 @@ function showCecilieLectureSolution(lecture) {
             
             ctx.stroke();
             break;
-            //en lille ændring
+            
         
         case 2:
             break;
