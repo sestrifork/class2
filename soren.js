@@ -14,7 +14,7 @@ function showSorenLectureSolution(lecture) {
             }
 
             rects.forEach(rect => {
-                ctx.strokeStyle = "#7FFF00"; //dark green
+                ctx.strokeStyle = rect.strokeStyle;
                 ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
             });
 
