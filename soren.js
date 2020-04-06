@@ -5,13 +5,19 @@ function showSorenLectureSolution(lecture) {
     // Clear canvas
     ctx.beginPath();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.strokeStyle = "#7FFF00"; //dark green
 
     switch (lecture) {
         case 1:
+            var rects = [];
             for (i=0; i<10; i++) {
-                ctx.strokeRect(i*20, i*20, 10, 10);
+                rects.push({x:i*10, y:i*15, width:10, height:10, strokeStyle:"#7FFF00"});
             }
+
+            rects.forEach(rect => {
+                ctx.strokeStyle = "#7FFF00"; //dark green
+                ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
+            });
+
             break;
         
         case 2:
