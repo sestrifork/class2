@@ -14,13 +14,13 @@ function showCecilieLectureSolution(lecture) {
                         Math.floor(Math.random()*(canvas.height-5)),
                         5,
                         5
-                    ];
+                    ]
                 }
 
-                // Laver noget andet
+                
                 for (i=0; i<mitArray.length; i++) {
                     let x = mitArray[i][0];
-                    if ((mitArray[i][0] > 20)) {
+                    if ((mitArray[i][0] > 50)) {
                         ctx.rect(mitArray[i][0], mitArray[i][1], mitArray[i][2], mitArray[i][3]);
                     }
                 }
@@ -29,6 +29,7 @@ function showCecilieLectureSolution(lecture) {
             
             ctx.stroke();
             break;
+            
         
         case 2:
             break;
