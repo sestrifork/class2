@@ -9,14 +9,23 @@ function showSorenLectureSolution(lecture) {
     switch (lecture) {
         case 1:
             var rects = [];
-            for (i=0; i<10; i++) {
+            for (i=0; i<10 ; i++) {
                 rects.push({x:i*10, y:i*15, width:10, height:10, strokeStyle:"#7FFF00"});
             }
 
             rects.forEach(rect => {
+
                 ctx.strokeStyle = rect.strokeStyle;
                 ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
+           
             });
+
+            // the same as
+            for (i=0; i<rects.length; i++) {
+                var rect = rects[i];
+                ctx.strokeStyle = rect.strokeStyle;
+                ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
+            }
 
             break;
         
