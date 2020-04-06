@@ -9,7 +9,7 @@ function isOverlapping(rect1, rect2){
 function showCecilieLectureSolution(lecture) {
     switch (lecture) {
         case 1:
-            var canvas = document.getElementById("myCanvas");
+            var canvas = document.getElementById("myCanvas1");
             var ctx = canvas.getContext("2d");
 
             ctx.beginPath();
@@ -53,7 +53,7 @@ function showCecilieLectureSolution(lecture) {
             
         
         case 2:
-            
+
             break;
             
     }
