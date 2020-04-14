@@ -85,7 +85,6 @@ function showCecilieLectureSolution(lecture) {
            
             var canvas = document.getElementById("myCanvas2");
             var ctx = canvas.getContext("2d");
-            */
 
             // Clear canvas
             ctx.beginPath();
