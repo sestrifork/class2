@@ -85,6 +85,7 @@ function showCecilieLectureSolution(lecture) {
            
             var canvas = document.getElementById("myCanvas2");
             var ctx = canvas.getContext("2d");
+            
 
             // Clear canvas
             ctx.beginPath();
@@ -93,26 +94,29 @@ function showCecilieLectureSolution(lecture) {
             var rects = [];
             var boxsize = 10;
             
-            // Først laver jeg et rektangel
-            for (i=0; i<98 ; i++) {
-                rects.push(getRandomRect(canvas.width, canvas.height, boxsize));
+            // Først laver jeg 99 rektangel
+            do {
+                var rect2 = getRandomRect(canvas.width, canvas.height, boxsize);
+                let overlapping = false;
+                for (j=0; j<rects.length; j++){
+                    if (isOverlapping(rects[j], rect2)) {
+                       overlapping = true; 
+                       console.log("De overlapper, så jeg smider det væk");
+                    }       
+                }
+                if (overlapping == false){
+                    rects.push(rect2);
+                }
             }
+            while ( rects.length<100 ) 
             
             // så laver jeg et mere og tjekker om de overlapper
-            var rect2 = getRandomRect(canvas.width, canvas.height, boxsize);
-            if (isOverlapping(rects[0], rect2)) {
-                console.log("De overlapper, så jeg smider det væk");
-            } else {
-                rects.push(rect2);
-
-
-
-            }
+            
             
             // the same as
             for (i=0; i<rects.length; i++) {
                 var rect = rects[i];
-                ctx.strokeStyle = "0000FF";
+                ctx.strokeStyle = "#0000FF";
                 ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
             }
 
