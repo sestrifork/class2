@@ -62,8 +62,8 @@ function showCecilieLectureSolution(lecture) {
             
         
         case 2:
-        /*    
-        //vælg canvas du skal bruge
+            
+        //vælg canvas jeg skal bruge
             var canvas = document.getElementById("myCanvas2");
             var ctx = canvas.getContext("2d");
 
@@ -86,7 +86,7 @@ function showCecilieLectureSolution(lecture) {
             var canvas = document.getElementById("myCanvas2");
             var ctx = canvas.getContext("2d");
             
-
+/*
             // Clear canvas
             ctx.beginPath();
             ctx.clearRect(0, 0, canvas.width, canvas.height);
