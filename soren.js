@@ -1,12 +1,3 @@
-class Person {
-    constructor(x, y, boxsize, infectionDay) { 
-        this.x = x;
-        this.y = y;
-        this.boxsize = boxsize;
-        this.infectionDay = infectionDay; 
-    }
-}
-
 function getColorRedBlackGreenRandom() {
     let random_number = Math.floor(Math.random()*3);
     
@@ -98,7 +89,7 @@ function showSorenLectureSolution(lecture) {
             break;
 
         case 3:
-            var canvas = document.getElementById("myCanvas2");
+            var canvas = document.getElementById("myCanvas3");
             var ctx = canvas.getContext("2d");
             
             // Clear canvas
@@ -128,6 +119,44 @@ function showSorenLectureSolution(lecture) {
                 ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
             }
             ctx.stroke();       
-            break;            
-    }
+            break;
+
+            case 4:
+                var canvas = document.getElementById("myCanvas4");
+                var ctx = canvas.getContext("2d");
+                var populationSize = Math.floor(Math.random()*50);
+                
+                // Clear canvas
+                ctx.beginPath();
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+                var population = [];
+                var boxsize = 10;
+                
+                // Først personen i populationen bliver født
+                let newPerson = new RandomPerson(canvas.width, canvas.height, boxsize);
+                population.push(newPerson);
+            
+                // så laver jeg et mere og tjekker om den nye person overlapper med de andre personer
+                for (var i=0; population.length<populationSize; i++) {
+                    newPerson = new RandomPerson(canvas.width, canvas.height, boxsize);
+                    var overlapping = false;
+                    for (var j=0; j<population.length; j++) {
+                        let person = population[j];
+                        if (person.isOverlapping(newPerson)) {
+                            overlapping = true;
+                        }
+                    }
+                    if (!overlapping) {
+                        population.push(newPerson);
+                    }
+                }
+                // draw the population
+                for (i=0; i<population.length; i++) {
+                    var person = population[i];
+                    person.render(ctx);
+                }
+                ctx.stroke();       
+                break;            
+        }
 }
