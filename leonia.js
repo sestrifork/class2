@@ -8,9 +8,11 @@ function getRandomRect(width, height, boxsize){
         y:Math.floor(Math.random()*(height-boxsize)), 
         width:boxsize, 
         height:boxsize, 
-        strokeStyle:"#7FFF00"
+        strokeStyle: "#FF0000"
     };
 }
+
+
 function showLeoniaLectureSolution(lecture) {
     switch (lecture) {
         case 1:
@@ -56,9 +58,10 @@ function showLeoniaLectureSolution(lecture) {
             //for (i=0; i<1; i++) {
                 //rects.push(getRandomRect(canvas.width, canvas.height, boxsize));
             //}
-            while (rects.length<100) {
+            while (rects.length<50) {
                 //Retangel 2 tilføjes:
                 var rect2 = getRandomRect(canvas.width, canvas.height, boxsize);
+
                 var overlapping = false;
                 for (i=0; i<rects.length; i++) {
                     if (isOverlapping(rects[i], rect2)) {
@@ -67,19 +70,22 @@ function showLeoniaLectureSolution(lecture) {
                     }
                 }
                 // Hvis retanglet ikke overlapper de andre, tilføjes de i arrayet. 
-                if (overlapping == false) { 
-                    rects.push(rect2);
+                if (overlapping == false) {
+                    rects.push(rect2)
                 }
             }
             //koden skrives ud - yes!
             for (i=0; i<rects.length; i++) {
                 var rect = rects[i];
-                ctx.strokeStyle = "#0000FF";
+                ctx.strokeStyle = getColorRedBlackGreenRandom()
+                //ctx.strokeStyle = "#FF0000" svt. at vælge én bestemt farve 
+                //ctx.strokeStyle = rect.strokeStyle fungerer ikke - hvorfor?
                 ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
             }
 
             ctx.stroke();       
 
         break;
+
     }
 }
