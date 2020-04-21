@@ -9,6 +9,7 @@ class Person {
 
 function getColorRedBlackGreenRandom() {
     let random_number = Math.floor(Math.random()*3);
+    
     switch (random_number) {
         case 0: return "#FF0000";
         case 1: return "#000000";
