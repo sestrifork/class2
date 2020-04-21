@@ -1,5 +1,4 @@
 
-//ændre i funktion, så det gælder for alle rektangler
 
 function isOverlapping(rect1, rect2){
     return ((rect2.x > (rect1.x-rect2.width)) && (rect2.x < (rect1.x+rect1.width)) &&
@@ -10,9 +9,32 @@ function getRandomRect(width, height, boxsize){
         x:Math.floor(Math.random()*(width-boxsize)), 
         y:Math.floor(Math.random()*(height-boxsize)), 
         width:boxsize, 
-        height:boxsize, 
-        strokeStyle:"#7FFF00"
+        height:boxsize
+        
     };
+}
+function getColorRedBlackGreenRandom() {
+    //der findes et tilfældigt nummer mellem 0 og 2
+    var random_number = (Math.floor(Math.random()*2));
+    //skift mellem de tilfældige numre
+    switch (random_number) {
+        case 0:
+            //farven er rød når det tilfældige tal er 0
+            strokeStyle= "#FF0000";
+            console.log("rektanglerne er røde");
+            break;
+        case 1: 
+            // farven er sort når det tilfældige tal er 1
+            strokeStyle="#000000";
+            console.log("rektanglerne er sorte");
+            break;
+        default:  
+            //farven er grøn hvis ikke det tilfældige nummer er 0 eller 1
+            strokeStyle= "#00FF00";
+            console.log("rektanglerne er grønne");
+
+    }
+
 }
 
 function showCecilieLectureSolution(lecture) {
@@ -109,17 +131,14 @@ function showCecilieLectureSolution(lecture) {
                 }
             }
             while ( rects.length<100 ) 
+                    
             
-            // så laver jeg et mere og tjekker om de overlapper
-            
-            
-            // the same as
+            // the same as, farven sættes til funktionen.
             for (i=0; i<rects.length; i++) {
                 var rect = rects[i];
-                ctx.strokeStyle = "#0000FF";
+                ctx.strokeStyle = getColorRedBlackGreenRandom;
                 ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
             }
-
 
             ctx.stroke();       
                 
