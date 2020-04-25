@@ -1,19 +1,18 @@
-function isOverlapping(rect1, rect2){
-    return ((rect2.x > (rect1.x-rect2.width)) && (rect2.x < (rect1.x+rect1.width)) &&
-    (rect2.y > (rect1.y-rect2.height)) && (rect2.y < (rect1.y+rect1.height)));
-}
-function getRandomRect(width, height, boxsize){
-    return {
-        x:Math.floor(Math.random()*(width-boxsize)), 
-        y:Math.floor(Math.random()*(height-boxsize)), 
-        width:boxsize, 
-        height:boxsize, 
-        strokeStyle: "#FF0000"
-    };
-}
-
-
 function showLeoniaLectureSolution(lecture) {
+    
+    function isOverlapping(rect1, rect2){
+        return ((rect2.x > (rect1.x-rect2.width)) && (rect2.x < (rect1.x+rect1.width)) &&
+        (rect2.y > (rect1.y-rect2.height)) && (rect2.y < (rect1.y+rect1.height)));
+    }
+    function getRandomRect(width, height, boxsize){
+        return {
+            x:Math.floor(Math.random()*(width-boxsize)), 
+            y:Math.floor(Math.random()*(height-boxsize)), 
+            width:boxsize, 
+            height:boxsize, 
+            strokeStyle: getColorRedBlackGreenRandom()
+        };
+    }
     switch (lecture) {
         case 1:
             var canvas = document.getElementById("myCanvas1");
@@ -77,9 +76,9 @@ function showLeoniaLectureSolution(lecture) {
             //koden skrives ud - yes!
             for (i=0; i<rects.length; i++) {
                 var rect = rects[i];
-                ctx.strokeStyle = getColorRedBlackGreenRandom()
+                //ctx.strokeStyle = getColorRedBlackGreenRandom()
                 //ctx.strokeStyle = "#FF0000" svt. at vælge én bestemt farve 
-                //ctx.strokeStyle = rect.strokeStyle fungerer ikke - hvorfor?
+                ctx.strokeStyle = rect.strokeStyle;
                 ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
             }
 
