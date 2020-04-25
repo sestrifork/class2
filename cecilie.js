@@ -1,43 +1,46 @@
 
 
-function isOverlapping(rect1, rect2){
-    return ((rect2.x > (rect1.x-rect2.width)) && (rect2.x < (rect1.x+rect1.width)) &&
-    (rect2.y > (rect1.y-rect2.height)) && (rect2.y < (rect1.y+rect1.height)));
-}
-function getRandomRect(width, height, boxsize){
-    return {
-        x:Math.floor(Math.random()*(width-boxsize)), 
-        y:Math.floor(Math.random()*(height-boxsize)), 
-        width:boxsize, 
-        height:boxsize
-        
-    };
-}
-function getColorRedBlackGreenRandom() {
-    //der findes et tilfældigt nummer mellem 0 og 2
-    var random_number = (Math.floor(Math.random()*2));
-    //skift mellem de tilfældige numre
-    switch (random_number) {
-        case 0:
-            //farven er rød når det tilfældige tal er 0
-            strokeStyle= "#FF0000";
-            console.log("rektanglerne er røde");
-            break;
-        case 1: 
-            // farven er sort når det tilfældige tal er 1
-            strokeStyle="#000000";
-            console.log("rektanglerne er sorte");
-            break;
-        default:  
-            //farven er grøn hvis ikke det tilfældige nummer er 0 eller 1
-            strokeStyle= "#00FF00";
-            console.log("rektanglerne er grønne");
-
-    }
-
-}
-
 function showCecilieLectureSolution(lecture) {
+
+    function isOverlapping(rect1, rect2){
+        return ((rect2.x > (rect1.x-rect2.width)) && (rect2.x < (rect1.x+rect1.width)) &&
+        (rect2.y > (rect1.y-rect2.height)) && (rect2.y < (rect1.y+rect1.height)));
+    }
+    function getRandomRect(width, height, boxsize){
+        return {
+            x:Math.floor(Math.random()*(width-boxsize)), 
+            y:Math.floor(Math.random()*(height-boxsize)), 
+            width:boxsize, 
+            height:boxsize,
+            strokeStyle:"#0FFF00"
+        };
+    }
+    function getColorRedBlackGreenRandomC() {
+        //der findes et tilfældigt nummer mellem 0 og 2
+        var random_number = (Math.floor(Math.random()*3));
+        console.log(random_number)
+        //skift mellem de tilfældige numre
+        switch (random_number) {
+            case 0:
+                //farven er rød når det tilfældige tal er 0
+                console.log("rektanglerne er røde");
+                return "#FF0000";
+                
+                break;
+            case 1: 
+                // farven er sort når det tilfældige tal er 1
+                console.log("rektanglerne er sorte");
+                return "#000000";
+                
+                break;
+            default:  
+                //farven er grøn hvis ikke det tilfældige nummer er 0 eller 1
+                console.log("rektanglerne er grønne");
+                return "#00FF00";
+    
+        }
+    
+    }
     switch (lecture) {
         case 1:
             var canvas = document.getElementById("myCanvas1");
@@ -45,29 +48,7 @@ function showCecilieLectureSolution(lecture) {
 
             ctx.beginPath();
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            /*
-            {
-                var mitArray = new Array();
-                for (i=0; i<200; i++) {
-                    mitArray[i] = [
-                        Math.floor(Math.random()*(canvas.width-5)),
-                        Math.floor(Math.random()*(canvas.height-5)),
-                        5,
-                        5
-                    ]
-                }
-
-                
-                for (i=0; i<mitArray.length; i++) {
-                    let x = mitArray[i][0];
-                    //if ((mitArray[i][0] > 50)) {
-                        ctx.rect(mitArray[i][0], mitArray[i][1], mitArray[i][2], mitArray[i][3]);
-                    //}
-                }
-
-            }
-            */
-
+        
             var rect1 = {x:50, y:50, width:100, height:100};
             ctx.strokeStyle = "#000000";
             ctx.strokeRect(rect1.x, rect1.y, rect1.width, rect1.height);
@@ -84,27 +65,7 @@ function showCecilieLectureSolution(lecture) {
             
         
         case 2:
-            /*
-        //vælg canvas jeg skal bruge
-            var canvas = document.getElementById("myCanvas2");
-            var ctx = canvas.getContext("2d");
-
-
-            // gør klar til at kunne starte med at tegne på canvas
-            ctx.beginPath();
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            //starter med at tegne en rektangel på canvassen
-            var rectangle = {x:Math.random()*canvas.width, y:Math.random()*canvas.height, width:10, height:10 };
-            ctx.strokeStyle="00FF00";
-            ctx.strokeRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
-            
-            //laver endnu en rektangel
-            var rectangle2 = {x:Math.random()*canvas.width, y:Math.random()*canvas.height, width:10, height:10 };
-            ctx.strokeStyle="00FF00";
-            ctx.strokeRect(rectangle2.x, rectangle2.y, rectangle2.width, rectangle2.height);
-            */
-           
             var canvas = document.getElementById("myCanvas2");
             var ctx = canvas.getContext("2d");
             
@@ -136,7 +97,10 @@ function showCecilieLectureSolution(lecture) {
             // the same as, farven sættes til funktionen.
             for (i=0; i<rects.length; i++) {
                 var rect = rects[i];
-                ctx.strokeStyle = getColorRedBlackGreenRandom;
+                debugger
+                ctx.strokeStyle = getColorRedBlackGreenRandomC();
+                //ctx.strokeStyle = "#000000"
+                //ctx.strokeStyle =
                 ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
             }
 
