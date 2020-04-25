@@ -13,7 +13,7 @@ function getColorRedBlackGreenRandom() {
     switch (random_number) {
         case 0: return "#FF0000";
         case 1: return "#000000";
-        default: return "00FF00";
+        default: return "#00FF00";
     }
 }
 
