@@ -105,13 +105,60 @@ function showCecilieLectureSolution(lecture) {
             }
 
             ctx.stroke();       
-                
-
-            
             
 
             break;
-           
+        
+        case 4:
+            var canvas = document.getElementById("myCanvas4");
+            var ctx = canvas.getContext("2d");
+            var populationSize = Math.floor(Math.random()*50);
+        
+            // Clear canvas
+            ctx.beginPath();
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+            var population = [];
+            var boxsize = 10;
+            
+            // Først personen i populationen bliver født
+            let newPerson = new RandomPerson(canvas.width, canvas.height, boxsize);
+            population.push(newPerson);
+        
+            // så laver jeg et mere og tjekker om den nye person overlapper med de andre personer
+            for (var i=0; population.length<populationSize; i++) {
+                newPerson = new RandomPerson(canvas.width, canvas.height, boxsize);
+                var overlapping = false;
+                for (var j=0; j<population.length; j++) {
+                    let person = population[j];
+                    if (person.isOverlapping(newPerson)) {
+                        overlapping = true;
+
+                    }
+                }
+                if (!overlapping) {
+                    population.push(newPerson);
+                    
+                }
+            }
+            // draw the population
+            for (i=0; i<population.length; i++) {
+                var person = population[i];
+                person.isAlive();
+                this.infected = NOT_INFECTED;
+                person.render(ctx);
+                    for (f=0; f<3; f++){
+                        var person = population[f];
+                        person.isInfected();
+                        this.infected = DECEASED
+                        person.render(ctx);
+                    }
+            }
+            ctx.stroke();
+            
+            
+            break; 
+
 
 
 
