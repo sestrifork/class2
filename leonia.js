@@ -1,18 +1,31 @@
-function showLeoniaLectureSolution(lecture) {
-    
-    function isOverlapping(rect1, rect2){
-        return ((rect2.x > (rect1.x-rect2.width)) && (rect2.x < (rect1.x+rect1.width)) &&
+function isOverlapping(rect1, rect2){
+
+    return ((rect2.x > (rect1.x-rect2.width)) && (rect2.x < (rect1.x+rect1.width)) &&
         (rect2.y > (rect1.y-rect2.height)) && (rect2.y < (rect1.y+rect1.height)));
-    }
-    function getRandomRect(width, height, boxsize){
-        return {
-            x:Math.floor(Math.random()*(width-boxsize)), 
-            y:Math.floor(Math.random()*(height-boxsize)), 
-            width:boxsize, 
-            height:boxsize, 
-            strokeStyle: getColorRedBlackGreenRandom()
+}
+    
+function getRandomRect(width, height, boxsize){
+    return {
+        x:Math.floor(Math.random()*(width-boxsize)), 
+        y:Math.floor(Math.random()*(height-boxsize)), 
+        width:boxsize, 
+        height:boxsize, 
+        strokeStyle: getColorRedBlackGreenRandom()
         };
+}
+
+function getColorRedBlackGreenRandom() {
+    let random_number = Math.floor(Math.random()*3);
+    
+    switch (random_number) {
+        case 0: return "#FF0000";
+        case 1: return "#000000";
+        default: return "#00FF00";
     }
+}
+
+
+function showLeoniaLectureSolution(lecture) {
     switch (lecture) {
         case 1:
             var canvas = document.getElementById("myCanvas1");
@@ -86,5 +99,52 @@ function showLeoniaLectureSolution(lecture) {
 
         break;
 
+        case 4: 
+            var canvas = document.getElementById("myCanvas4");
+            var ctx = canvas.getContext("2d");
+            var populationSize = Math.floor(Math.random()*50);
+            // en tilfældig populationssize af 50 muligheder def
+
+            // clear canvas
+            ctx.beginPath();
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            //vi tegner et array af personer
+            var population = [];
+            var boxsize = 5;
+
+            //der tegnes en tilfældig person 
+            //let newPerson = new Person(canvas.width, canvas.height, boxsize);
+            //population.push(newPerson);
+
+            // der tilføjes personer og checkes for overlap med andre personer
+            for (var i=0; population.length<populationSize; i++) {
+                // new = function der konstruerer et objekt vha. RandomPerson (Person class = skabelonen)
+                newPerson = new RandomPerson(canvas.width, canvas.height, boxsize);
+                if (i<3) {
+                    // infected-variablen modificeres for de første 3 objekter (personer) i arrayet 
+                    newPerson.infected = DECEASED;
+                }
+                
+                var overlapping = false;
+                for (var j=0; j<population.length; j++) {
+                    let person = population[j];
+                    if (person.isOverlapping(newPerson)) {
+                        overlapping = true;
+                    }
+                }
+                //Hvis personen ikke overlapper, tilføjes pt i arrayet 
+                if (!overlapping) {
+                    population.push(newPerson);
+                }
+            }
+            // draw the population
+            for (i=0; i<population.length; i++) {
+                var person = population[i];
+                person.render(ctx);
+
+            }
+            ctx.stroke();       
+            break;        
     }
 }
