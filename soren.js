@@ -1,11 +1,3 @@
-class Person {
-    constructor(x, y, boxsize, infectionDay) { 
-        this.x = x;
-        this.y = y;
-        this.boxsize = boxsize;
-        this.infectionDay = infectionDay; 
-    }
-}
 
 function getColorRedBlackGreenRandom() {
     let random_number = Math.floor(Math.random()*3);

@@ -141,18 +141,17 @@ function showCecilieLectureSolution(lecture) {
                     
                 }
             }
+            //her bliver 3 personer smittet på dag 1
+            if (population.length>2) {
+                population[0].infect(1);
+                population[1].infect(1);
+                population[2].infect(1);
+            }          
             // draw the population
             for (i=0; i<population.length; i++) {
                 var person = population[i];
-                person.isAlive();
-                this.infected = NOT_INFECTED;
                 person.render(ctx);
-                    for (f=0; f<3; f++){
-                        var person = population[f];
-                        person.isInfected();
-                        this.infected = DECEASED
-                        person.render(ctx);
-                    }
+                    
             }
             ctx.stroke();
             
