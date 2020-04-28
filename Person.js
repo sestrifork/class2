@@ -42,10 +42,21 @@ class Person {
         return this.isOverlappingBoxsize(infectedPerson, infectedPerson.boxsize*VIRUS_DANGER) ;
     }
 
-    infect(dayCounter) {
+    setInfect(dayCounter) {
         if (this.infected == NOT_INFECTED) {
             this.infected = dayCounter;
         }
+    }
+    setImmune() {
+        if (this.infected == DECEASED) {
+            console.log("Error: Trying to make DECEASED IMMUNE");
+        } else {
+            this.infected = IMMUNE;
+        }
+    }
+
+    setDeceased() {
+        this.infected = DECEASED;
     }
 
     updateImmunity(dayCounter) {
@@ -60,18 +71,25 @@ class Person {
         switch (this.infected) {
             case NOT_INFECTED:
                 ctx.strokeStyle = "#FAEBD7"; //green
+                ctx.strokeRect(this.x, this.y, this.boxsize, this.boxsize);
                 break; 
             case IMMUNE:
-                ctx.strokeStyle = "#7FFF00"; //dark green
+                ctx.strokeStyle = "#0000FF"; 
+                ctx.strokeRect(this.x, this.y, this.boxsize, this.boxsize);
                 break;
             case DECEASED: 
                 ctx.strokeStyle = "#000000"; // grey
-            break ;
+                ctx.strokeRect(this.x, this.y, this.boxsize, this.boxsize);
+                break ;
 
             default:
-                ctx.strokeStyle = "#8A2BE2"; //red
+                ctx.strokeStyle = "#FF0000"; //red
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(this.x + this.boxsize, this.y+this.boxsize);
+                ctx.moveTo(this.x + this.boxsize, this.y);
+                ctx.lineTo(this.x, this.y+this.boxsize);
+                ctx.stroke();
         }
-        ctx.strokeRect(this.x, this.y, this.boxsize, this.boxsize);
     }
     
     render(ctx) {

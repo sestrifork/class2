@@ -1,4 +1,4 @@
-
+var Population;
 
 function showCecilieLectureSolution(lecture) {
 
@@ -143,19 +143,75 @@ function showCecilieLectureSolution(lecture) {
             }
             //her bliver 3 personer smittet på dag 1
             if (population.length>2) {
-                population[0].infect(1);
-                population[1].infect(1);
-                population[2].infect(1);
+                population[0].setInfect(1);
+                population[1].setInfect(1);
+                population[2].setInfect(1);
             }          
             // draw the population
+            /*
             for (i=0; i<population.length; i++) {
                 var person = population[i];
                 person.render(ctx);
                     
             }
+            */
+            population.forEach(person => { person.render(ctx); });
             ctx.stroke();
+            break;
             
+            case 5:
+                var canvas = document.getElementById("myCanvas5");
+                var ctx = canvas.getContext("2d");
+                var populationSize = 25+Math.floor(Math.random()*50);
+                var boxsize = 10;
+                // Clear canvas
+                ctx.beginPath();
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
             
+                if (Population == null) {
+                    Population = new Array();
+                
+                    for (var i=0; Population.length<populationSize; i++) {
+                        let newPerson = new RandomPerson(canvas.width, canvas.height, boxsize);
+                        var overlapping = false;
+                        for (var j=0; j<Population.length; j++) {
+                            let person = Population[j];
+                            if (person.isOverlapping(newPerson)) {
+                                overlapping = true;
+        
+                            }
+                        }
+                        if (!overlapping) {
+                            Population.push(newPerson);    
+                        }
+                    }
+                    //her bliver 3 personer smittet på dag 1
+                    if (Population.length>5) {
+                        Population[0].setInfect(1);
+                        Population[1].setInfect(1);
+                        Population[2].setInfect(1);
+                        Population[3].setImmune();
+                        Population[4].setDeceased();
+                    }          
+                }
+                else {
+                    console.log("Population exists");
+                    // Spredt virus
+                    // For alle dem, der er smittet skal vi smitte dem i nærheden
+                    Population.forEach(person => {
+                        if (person.isInfected()) {
+                            for (var i=0; Population.length; i++) {
+                                if (person.isInsideInfectionZone(Population[i])) {
+                                    Population[i].setInfected(2);
+                                }
+                            }
+                        }
+                    });
+                }
+
+                Population.forEach(person => { person.render(ctx); });
+                ctx.stroke();
+                
             break; 
 
 
