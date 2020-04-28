@@ -164,6 +164,16 @@ function showCecilieLectureSolution(lecture) {
                 var ctx = canvas.getContext("2d");
                 var populationSize = 25+Math.floor(Math.random()*50);
                 var boxsize = 10;
+
+                //Definition af smittezone for en smittet person, 
+                //derfor bruges isoverlapping boxsize ganget med DANGER, for at gøre zonen større.
+                isInsideInfectionZone(infecetedperson); {
+                    return isOverlappingBoxsize(infectedperson, infectedperson.boxsize * VIRUS_DANGER)
+                }
+                // for hvert klik på knappen, går der en dag og de menneskesr inde i smittezonen, bliver nu smittet.
+                
+                    
+
                 // Clear canvas
                 ctx.beginPath();
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -190,19 +200,20 @@ function showCecilieLectureSolution(lecture) {
                         Population[0].setInfect(1);
                         Population[1].setInfect(1);
                         Population[2].setInfect(1);
-                        Population[3].setImmune();
-                        Population[4].setDeceased();
+                        Population[3].setImmune(1);
+                        Population[4].setDeceased(1);
                     }          
                 }
                 else {
                     console.log("Population exists");
-                    // Spredt virus
-                    // For alle dem, der er smittet skal vi smitte dem i nærheden
+                    
+                    // Sprede virus ud
+                    // For alle dem, der er smittet skal vi smitte dem i nærheden for hver dag der går
                     Population.forEach(person => {
                         if (person.isInfected()) {
                             for (var i=0; Population.length; i++) {
                                 if (person.isInsideInfectionZone(Population[i])) {
-                                    Population[i].setInfected(2);
+                                    Population[i].setInfect(2);
                                 }
                             }
                         }

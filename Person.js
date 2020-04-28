@@ -73,13 +73,20 @@ class Person {
                 ctx.strokeStyle = "#FAEBD7"; //green
                 ctx.strokeRect(this.x, this.y, this.boxsize, this.boxsize);
                 break; 
-            case IMMUNE:
-                ctx.strokeStyle = "#0000FF"; 
-                ctx.strokeRect(this.x, this.y, this.boxsize, this.boxsize);
+            case IMMUNE: 
+                ctx.strokeStyle = "#0000FF";        
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(this.x, this.y + this.boxsize);
+                ctx.moveTo(this.x - 0.5 * this.boxsize, this.y + 0.5 * this.boxsize);
+                ctx.lineTo(this.x + 0.5 * this.boxsize, this.y + 0.5 * this.boxsize);
+                ctx.stroke();
                 break;
             case DECEASED: 
-                ctx.strokeStyle = "#000000"; // grey
-                ctx.strokeRect(this.x, this.y, this.boxsize, this.boxsize);
+                ctx.strokeStyle = "#000000"; // black
+                ctx.moveTo(this.x + 0.5 * this.boxsize, this.y);
+                ctx.arc(this.x, this.y, this.boxsize * 0.5 , 0 , 2 * Math.PI); 
+                ctx.stroke();
+                ctx.fill();
                 break ;
 
             default:
