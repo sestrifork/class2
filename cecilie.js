@@ -162,25 +162,24 @@ function showCecilieLectureSolution(lecture) {
             case 5:
                 var canvas = document.getElementById("myCanvas5");
                 var ctx = canvas.getContext("2d");
+                //der bliver minimum lavet 25 personer
                 var populationSize = 25+Math.floor(Math.random()*50);
                 var boxsize = 10;
 
-                //Definition af smittezone for en smittet person, 
+                 //Definition af smittezone for en smittet person, 
                 //derfor bruges isoverlapping boxsize ganget med DANGER, for at gøre zonen større.
                 isInsideInfectionZone(infecetedperson); {
-                    return isOverlappingBoxsize(infectedperson, infectedperson.boxsize * VIRUS_DANGER)
-                }
-                // for hvert klik på knappen, går der en dag og de menneskesr inde i smittezonen, bliver nu smittet.
+                    return isOverlappingBoxsize(infectedperson, infectedperson.boxsize * VIRUS_DANGER)}
                 
+                    // for hvert klik på knappen, går der en dag og de menneskesr inde i smittezonen, bliver nu smittet.
+                daycounter();
                     
-
                 // Clear canvas
                 ctx.beginPath();
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
+                // hvis populationen ikke eksistere laves der en ny population.
                 if (Population == null) {
                     Population = new Array();
-                
                     for (var i=0; Population.length<populationSize; i++) {
                         let newPerson = new RandomPerson(canvas.width, canvas.height, boxsize);
                         var overlapping = false;
@@ -206,7 +205,7 @@ function showCecilieLectureSolution(lecture) {
                 }
                 else {
                     console.log("Population exists");
-                    
+                
                     // Sprede virus ud
                     // For alle dem, der er smittet skal vi smitte dem i nærheden for hver dag der går
                     Population.forEach(person => {
