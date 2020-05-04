@@ -1,4 +1,5 @@
 var Population;
+var Infectionday;
 
 function showCecilieLectureSolution(lecture) {
 
@@ -164,15 +165,10 @@ function showCecilieLectureSolution(lecture) {
                 var ctx = canvas.getContext("2d");
                 //der bliver minimum lavet 25 personer
                 var populationSize = 25+Math.floor(Math.random()*50);
-                var boxsize = 10;
+                var Tempboxsize = 10;
 
                  //Definition af smittezone for en smittet person, 
                 //derfor bruges isoverlapping boxsize ganget med DANGER, for at gøre zonen større.
-                isInsideInfectionZone(infecetedperson); {
-                    return isOverlappingBoxsize(infectedperson, infectedperson.boxsize * VIRUS_DANGER)}
-                
-                    // for hvert klik på knappen, går der en dag og de menneskesr inde i smittezonen, bliver nu smittet.
-                daycounter();
                     
                 // Clear canvas
                 ctx.beginPath();
@@ -180,8 +176,10 @@ function showCecilieLectureSolution(lecture) {
                 // hvis populationen ikke eksistere laves der en ny population.
                 if (Population == null) {
                     Population = new Array();
+                    Infectionday = 1;
                     for (var i=0; Population.length<populationSize; i++) {
-                        let newPerson = new RandomPerson(canvas.width, canvas.height, boxsize);
+                        let newPerson = new RandomPerson(canvas.width, canvas.height, Tempboxsize);
+                        newPerson.setNotinfected();
                         var overlapping = false;
                         for (var j=0; j<Population.length; j++) {
                             let person = Population[j];
@@ -196,28 +194,37 @@ function showCecilieLectureSolution(lecture) {
                     }
                     //her bliver 3 personer smittet på dag 1
                     if (Population.length>5) {
-                        Population[0].setInfect(1);
-                        Population[1].setInfect(1);
-                        Population[2].setInfect(1);
-                        Population[3].setImmune(1);
-                        Population[4].setDeceased(1);
-                    }          
+                        Population[0].setInfect(Infectionday);
+                        Population[1].setInfect(Infectionday);
+                        Population[2].setInfect(Infectionday);
+                        Population[3].setImmune(Infectionday);
+                        Population[4].setDeceased(Infectionday);
+
+                    }
+                             
                 }
                 else {
-                    console.log("Population exists");
+                    Infectionday = Infectionday + 1;
+                    console.log("Infectionday:",Infectionday);
                 
                     // Sprede virus ud
                     // For alle dem, der er smittet skal vi smitte dem i nærheden for hver dag der går
                     Population.forEach(person => {
-                        if (person.isInfected()) {
-                            for (var i=0; Population.length; i++) {
-                                if (person.isInsideInfectionZone(Population[i])) {
-                                    Population[i].setInfect(2);
+                        if (person.isInfected() && (!person.isInfectedToday(Infectionday))) {
+                            //debugger
+                            for (var i=0; i<Population.length; i++) {
+                                if (person.isInsideInfectionzone(Population[i])) {
+                                    Population[i].setInfect(Infectionday);
                                 }
                             }
                         }
                     });
+                /*Population.forEach(Infectionday => { 
+                    for (var k=0; k<Population.length; k++);
+                        Population[k].moveRandom(boxsize) });*/
                 }
+                
+                //person.moveRandom(boxsize);
 
                 Population.forEach(person => { person.render(ctx); });
                 ctx.stroke();
