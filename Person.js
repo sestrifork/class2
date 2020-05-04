@@ -73,33 +73,41 @@ class Person {
     drawOn2DContext(ctx) {
         switch (this.infected) {
             case NOT_INFECTED:
+                ctx.beginPath()
                 ctx.strokeStyle = "#FAEBD7"; //green
                 ctx.strokeRect(this.x, this.y, this.boxsize, this.boxsize);
+                ctx.closePath()
                 break; 
                 
-            case IMMUNE:         
+            case IMMUNE: 
+                ctx.beginPath()        
                 ctx.moveTo(this.x, this.y);
                 ctx.lineTo(this.x, this.y + this.boxsize);
                 ctx.moveTo(this.x - 0.5 * this.boxsize, this.y + 0.5 * this.boxsize);
                 ctx.lineTo(this.x + 0.5 * this.boxsize, this.y + 0.5 * this.boxsize);
                 ctx.strokeStyle = "#0000FF";
                 ctx.stroke();
+                ctx.closePath()                
                 break;
 
             case DECEASED: 
+                ctx.beginPath()    
                 ctx.moveTo(this.x + 0.5 * this.boxsize, this.y);
                 ctx.arc(this.x, this.y, this.boxsize * 0.5 , 0 , 2 * Math.PI);
                 ctx.strokeStyle = "#000000"; // black 
                 ctx.stroke();
+                ctx.closePath()
                 break ;
 
             default: 
+                ctx.beginPath()
                 ctx.moveTo(this.x, this.y);
                 ctx.lineTo(this.x + this.boxsize, this.y+this.boxsize);
                 ctx.moveTo(this.x + this.boxsize, this.y);
                 ctx.lineTo(this.x, this.y+this.boxsize);
-                ctx.strokeStyle = "#FF000"; //red
+                ctx.strokeStyle = "#FF0000"; //red
                 ctx.stroke();
+                ctx.closePath()
         }
     }
     
