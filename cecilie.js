@@ -224,7 +224,6 @@ function showCecilieLectureSolution(lecture) {
                         Population[k].moveRandom(boxsize) });*/
                 }
                 
-                //person.moveRandom(boxsize);
 
                 Population.forEach(person => { person.render(ctx); });
                 ctx.stroke();
