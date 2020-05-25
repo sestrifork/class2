@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<body>
+<style>
+    body
+        {background-color:rgba(173, 230, 195);
+        margin:25px;
+    }
+
+    h2 {background-color: rgba(0, 128, 0, 0.3);
+        text-align: center;
+        color: rgb(6, 114, 82);
+        border-style: dotted;
+        border-radius: 5px
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+    }
+    
+    p {text-align: center; }
+    
+    button {text-align: center}
+
+    .Fonttype {
+        font-family: "Lucida Console", Courier, monospace;
+    }  
+    p.demo6 {
+        font-family: "Lucida Console", Courier, monospace;
+        
+    }
+
+    div.gallery {
+        margin: 5px;
+        float: right;
+        width:400px;
+    }
+
+    div.gallery img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+    
+    .Imagecontainer { 
+        height: 320px;
+        position: relative; 
+    }
+
+    .CanvasContainer{ 
+        height: 150px;
+        position: relative; 
+    }
+
+    .center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+
+    table, th {
+        border: none;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+    th {
+        width: auto
+    }
+
+</style>
+
+<h2 class=Fonttype>Cecilies Rejseblog</h2>
+
+<button class=Fonttype onclick= "myfunction()" > Tryk </button>
+
+<p class=Fonttype id="demo5"></p>
+
+<p class=demo6 id="demo6"></p>
+
+<p class=Fonttype id="demo7"></p>
+
+<p class=Fonttype id="demo8"></p>
+
+<p class=Fonttype id="demo9"></p>
+
+<div class="CanvasContainer">
+    <div class="center">
+        <canvas id="myCanvas" width="300" height="150" style="border:1px solid #000000;"></canvas>
+    </div>
+</div>
+
+<p class=Fonttype>Fox gletjseren i New Zealand</p>
+
+<div class ="Imagecontainer">
+    <div class="center">
+        <div class="gallery">
+            <a target="_blank" href="Fox.jpg">
+                <img src="Fox.jpg" alt="Fox Glacier" width="600" height=auto >
+            </a>
+        </div>
+    </div>
+</div>
+
+<p class=Fonttype>En bil i Salar Di Uyuni, Bolivia</p>
+
+<div class ="Imagecontainer">
+    <div class="center">
+        <div class="gallery">
+            <a target="_blank" href="IMG_2088.jpeg">
+                <img src= "IMG_2088.jpeg" alt ="Salar Di Uyuni" width="600" height=auto>
+            </a>
+        </div>
+    </div>
+</div>
+
+<p class=Fonttype>På toppen af Kilimanjaro</p>
+
+<div class ="Imagecontainer">
+    <div class="center">
+        <div class="gallery">
+            <a target="_blank" href="IMG_5167.jpeg">
+                <img src="IMG_5167.jpeg" alt="Kilimanjaro" width="600" height="auto">
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<table>
+    <tr>
+      <th>
+        <a target="_blank" href="Fox.jpg">
+            <img src="Fox.jpg" alt="Fox Glacier" height=320px border-radius=8px >
+        </a>
+      </th>
+      <th>
+        <a target="_blank" href="IMG_2088.jpeg">
+            <img src= "IMG_2088.jpeg" alt ="Salar Di Uyuni" height=320px border-radius=8px>
+        </a> 
+      </th>
+      <th>
+        <a target="_blank" href="IMG_5167.jpeg">
+            <img src="IMG_5167.jpeg" alt="Kilimanjaro" height=320px >
+        </a>
+      </th>
+    <tr>
+  </table>
+
+<script>
+
+function myfunction() {
+    var Velkommen = "Velkommen";
+    var skrivVelkommen = Velkommen.toString();
+    document.getElementById("demo5").innerHTML = skrivVelkommen;
+}
+
+// laver objekt:
+var person = {
+    firstName:"John", 
+    lastName:"Doe", 
+    age:50, 
+    eyeColor:"blue",
+    fullName : function() {
+        return this.firstName + " " + this.lastName;
+    }
+};
+
+// skriver det ud
+document.getElementById("demo6").innerHTML =
+    "<br>" + person.firstName + " " + person.lastName + " is " + person.age + " years old." + " His eyecolor is " + person.eyeColor + "." + "<br>";
+
+//laver endnu en person (objekt)
+var otherPerson = {
+    firstName:"Hannah", 
+    lastName:"Green", 
+    age:15, 
+    eyeColor:"brown",
+    fullName : function() {
+        return this.firstName + " " + this.lastName;
+    }
+};
+ //skriver det ud igen
+document.getElementById("demo7").innerHTML =
+    otherPerson.firstName + " " + otherPerson.lastName + " is " + otherPerson.age + " years old." + "<br>" + "<br>" ;
+
+
+var allePersoner = [otherPerson.fullName() + " has " + otherPerson.eyeColor + " eyes.", person.fullName(), "Emma", "Lucas"];
+var text = " ";
+var i;
+for (i=0; i < allePersoner.length; i++ ){
+        text += allePersoner[i] + "<br>";
+}
+document.getElementById("demo8").innerHTML = text
+
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.beginPath();
+ctx.lineWidth = "6"
+ctx.strokeStyle = "blue" 
+ctx.rect(20, 20, 150, 100);
+ctx.stroke();
+
+
+class fruit{
+    constructor(type) {
+        this.fruitType = type;
+    }
+    present() {
+    return 'It is an ' + this.fruitType;
+  }
+}
+class FruitType extends fruit {
+    constructor(type, color, shape){
+        super(type);
+        this.FruitType = color + " and " + shape;
+    } 
+    show() {
+    return this.present() + ', it is ' + this.FruitType + "<br>";
+  }
+}
+
+myFruit = new FruitType("Apple", "red", "round");
+document.getElementById("demo9").innerHTML = myFruit.show();
+
+</script>
+
+</body>
+</html>

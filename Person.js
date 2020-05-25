@@ -15,6 +15,7 @@ class Person {
         this.boxsize = boxsize;
         this.infected = NOT_INFECTED; 
     }
+
     isAlive() {
         return (this.infected != DECEASED);
     }
@@ -69,6 +70,7 @@ class Person {
             }
         }
     }
+    
 
     drawOn2DContext(ctx) {
         switch (this.infected) {

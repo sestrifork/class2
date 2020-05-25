@@ -219,11 +219,31 @@ function showCecilieLectureSolution(lecture) {
                             }
                         }
                     });
-                /*Population.forEach(Infectionday => { 
-                    for (var k=0; k<Population.length; k++);
-                        Population[k].moveRandom(boxsize) });*/
                 }
+                //hvis en person har været infected i mere end 14 bliver personen enten immun eller dør
                 
+                
+                for (var k=0; k<Population.length; k++) {
+                    var person = new Person(Population[k].x, Population[k].y, Population[k].boxsize);
+                    person.moveRandom(10);
+                    var overlapping = false;
+                    for (var j=0; j<Population.length; j++) {
+                        let otherperson = Population[j];
+                        if (person.isOverlapping(otherperson)) {
+                            if (j != k) {
+                                overlapping = true;
+                            }    
+                        }
+                    }
+                    if (!overlapping) {
+                        Population[k].x = person.x;  
+                        Population[k].y = person.y;
+                    }
+                }
+                // hvis personen er smittet skal der gå 14 dage også dør eller overlever personen.
+                Population.forEach(person => { person.liveOrDie(Infectionday); });
+            
+                //Population.forEach(person => { person.moveRandom(10); });
 
                 Population.forEach(person => { person.render(ctx); });
                 ctx.stroke();
