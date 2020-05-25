@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <head>
+        <link rel="stylesheet" type="text/css" href="tabelstyle.css">
+    </head>
+<body>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<h1 id="firstheader">Trifork Programmer Talents</h1>
+
+<div id ="jonasContainer">
+    <canvas id="jonasCanvas" width="600" height="300" style="border:1px solid #d3d3d3;">
+        Your browser does not support the HTML5 canvas tag.</canvas>
+    <button id="knapTryk" type="button" onclick="showJonasDemo()">Initialize population</button>
+    <div id="inputContainer">
+        <label>Tries:</label>
+        <input class="undertitel" id="tries" type="text" value="800">
+        <label>Boxsize:</label>
+        <input class="undertitel" id="boxSizeV" type="text" value="5">
+        <label>Movesize:</label>
+        <input class="undertitel" id="moveSize" type="text" value="4">
+        <label>Virus Mortality:</label>
+        <input class="undertitel" id="virusMortality" type="text" value="5">
+        <label>Sickness Period:</label>
+        <input class="undertitel" id="sicknessPeriod" type="text" value="14">
+        <label>Virus Spread</label>
+        <input class="undertitel" id="virusSpread" type="text" value="3">
+        <label>Space Between Boxes</label>
+        <input class="undertitel" id="spaceBetweenBoxes" type="text" value="3">
+    </div>
+</div>
+<p id="programmedbyID3"></p>
+<div id="chartContainer" style="height: 300px; width: 100%;">
+</div>
+
+<!-- 
+<canvas id="sesCanvas" width="1000" height="1000" style="border:1px solid #d3d3d3;">
+    Your browser does not support the HTML5 canvas tag.</canvas>
+<label for="boxsize"><br>Box size:</label>
+<input type="number" id="boxSize" name="boxSize" value="20">
+<label for="boxsize">Population size:</label>
+<input type="number" id="populationSize" name="boxSize" value="200">
+<button type="button" id="nextday" onclick="showSESDemo()">Initiate population</button>
+<p id="programmedbyID4">Her vi, hvem der har lavet siden - dynamisk.</p> -->
+
+
+</body>
+</html>
