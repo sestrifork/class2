@@ -1,0 +1,71 @@
+    body
+        {background-color:rgba(173, 230, 195);
+        margin:25px;
+    }
+
+    h2 {background-color: rgba(0, 128, 0, 0.3);
+        text-align: center;
+        color: rgb(6, 114, 82);
+        border-style: dotted;
+        border-radius: 5px
+    }
+    
+    p {text-align: center; }
+    
+    button {text-align: center}
+
+    .Fonttype {
+        font-family: "Lucida Console", Courier, monospace;
+    }  
+    p.demo6 {
+        font-family: "Lucida Console", Courier, monospace;
+        
+    }
+
+    div.gallery {
+        margin: 5px;
+        float: right;
+        width:400px;
+    }
+
+    div.gallery img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+    
+    .Imagecontainer { 
+        height: 320px;
+        position: relative; 
+    }
+
+    .CanvasContainer{ 
+        height: 150px;
+        position: relative; 
+    }
+
+    .center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    table, th {
+        border: none;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+    th {
+        width: auto
+    }
+
+    #billeder {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        
+      }
