@@ -64,8 +64,9 @@
     }
 
     #billeder {
-        display: flex;
+        display: table;
         flex-direction: row;
         position: relative;
-        
+        left: 20px;
+
       }
