@@ -1,5 +1,70 @@
 var Population;
 var Infectionday;
+var PopulationDiagram = [];
+
+class DataPoint {
+    constructor(day){
+    this.day = day;
+    }
+}
+
+// laver et diagram
+function showChart(populationDatapoints){
+    var chart = new CanvasJS.chart("chartContainer", {
+        title:{ 
+            text: "Smittespredning Covid-19"
+        },
+        theme: "light2", //"light1", "light2", "dark1", "dark2"
+        //ikke sikker på hvad det gør? om den er true eller false
+        animationEnabled: true,
+        axisX: {
+            interval:1,
+            intervalType:"days"
+        },
+        // gør at en boks dukker op med informationer
+        toolTip: {
+            shared: true
+        },
+
+        data: [
+        {
+            type: "stackedArea100",
+            name: "Immune",
+            showInLegend: "true",
+            dataPoints:[]
+        },
+        {
+            type:"stackedArea100",
+            name: "Deceased",
+            showInLegend: "true",
+            dataPoints:[]
+        },  
+        {
+            type: "stackedArea100",
+            name: "Infected",
+            showInLegend: "true",
+            dataPoints:[]
+        },
+        {
+            type: "stackedArea100",
+            name: "Not infected",
+            xValueFormatString: "DD, MMM",
+            showInLegend: "true",
+            datapoints:[]
+        }
+        ]
+    });
+    // tilføjer nu data til diagrammet, den her vil jeg gerne have uddybet. Options og den der hedder xValue
+
+    populationDatapoints.forEach(datapoint => {
+        chart.options.data[0].dataPoints.push({ x: new Date(2020, 03, datapoint.day), y: datapoint.immune});
+        chart.options.data[1].dataPoints.push({ x: new Date(2020, 03, datapoint.day), y: datapoint.deceased});
+        chart.options.data[2].dataPoints.push({ x: new Date(2020, 03, datapoint.day), y: datapoint.infected});
+        chart.options.data[3].dataPoints.push({ x: new Date(2020, 03, datapoint.day), y: datapoint.noninfected});
+    });
+    //tegner det
+    chart.render();
+}
 
 function showCecilieLectureSolution(lecture) {
 
@@ -248,6 +313,19 @@ function showCecilieLectureSolution(lecture) {
                 Population.forEach(person => { person.render(ctx); });
                 ctx.stroke();
                 
+
+                //laver et diagram med datapunkterne ved at bruge class Datapoint
+                var datapoint = new DataPoint(Infectionday);
+
+                //siger til systemet at det skal tegne datapunkterne
+                population.forEach(person => { 
+                    person.
+                    (ctx)
+                }
+                    push.datapoint(ctx)
+
+                        ) 
+
             break; 
 
 
