@@ -5,12 +5,16 @@ var PopulationDiagram = [];
 class DataPoint {
     constructor(day){
     this.day = day;
+    this.deceased = 0;
+    this.infected = 0;
+    this.immune = 0;
+    this.noninfected = 0;
     }
 }
 
 // laver et diagram
 function showChart(populationDatapoints){
-    var chart = new CanvasJS.chart("chartContainer", {
+    var chart = new CanvasJS.Chart("chartContainer", {
         title:{ 
             text: "Smittespredning Covid-19"
         },
@@ -48,10 +52,9 @@ function showChart(populationDatapoints){
         {
             type: "stackedArea100",
             name: "Not infected",
-            xValueFormatString: "DD, MMM",
             showInLegend: "true",
-            datapoints:[]
-        }
+            dataPoints:[]
+        },
         ]
     });
     // tilføjer nu data til diagrammet, den her vil jeg gerne have uddybet. Options og den der hedder xValue
@@ -60,6 +63,7 @@ function showChart(populationDatapoints){
         chart.options.data[0].dataPoints.push({ x: new Date(2020, 03, datapoint.day), y: datapoint.immune});
         chart.options.data[1].dataPoints.push({ x: new Date(2020, 03, datapoint.day), y: datapoint.deceased});
         chart.options.data[2].dataPoints.push({ x: new Date(2020, 03, datapoint.day), y: datapoint.infected});
+        debugger;
         chart.options.data[3].dataPoints.push({ x: new Date(2020, 03, datapoint.day), y: datapoint.noninfected});
     });
     //tegner det
@@ -318,13 +322,38 @@ function showCecilieLectureSolution(lecture) {
                 var datapoint = new DataPoint(Infectionday);
 
                 //siger til systemet at det skal tegne datapunkterne
-                population.forEach(person => { 
-                    person.
-                    (ctx)
-                }
-                    push.datapoint(ctx)
+                /*Population.forEach(person => { 
+                    if (person.infected == DECEASED) {                        
+                        datapoint.deceased = datapoint.deceased + 1;
+                    }
+                    else if (person.infected == IMMUNE) {
+                        datapoint.immune = datapoint.immune + 1;
+                    }
+                    else if (person.infected == NOT_INFECTED) {
+                        datapoint.noninfected = datapoint.noninfected +1;
+                    }
+                    else if (person.infected != NOT_INFECTED && person.infected != IMMUNE && person.infected != DECEASED) {
+                        datapoint.infected = datapoint.infected +1;
+                    }
+                });*/
 
-                        ) 
+                //samme som:
+
+                Population.forEach(person => {
+                    switch(person.infected){
+                        case IMMUNE: datapoint.immune++ ; break;
+                        case DECEASED: datapoint.deceased++ ; break;
+                        case NOT_INFECTED: datapoint.noninfected++ ; break;
+                        default: datapoint.infected++ ;
+                    }
+                })
+                
+                //tegner diagrammet.
+                PopulationDiagram.push(datapoint);
+                showChart(PopulationDiagram)
+            
+                    
+
 
             break; 
 
