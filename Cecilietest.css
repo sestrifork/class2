@@ -64,9 +64,10 @@
     }
 
     #billeder {
-        display: table-cell;
-        flex-direction: row;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-gap: 25px;
+        padding: 20px;
         position: relative;
-        padding: 5px;
 
       }
